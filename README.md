@@ -14,15 +14,18 @@ Uma extensão para VS Code que monitora o tamanho do seu prompt e te avisa quand
 
 ## 🚀 Instalação
 
-### Via VS Code Marketplace (em breve)
-```
-Em desenvolvimento - aguarde publicação
+### Via VS Code Marketplace
+```bash
+ext install robsonalvesdevbr.context-reminder
 ```
 
-### Via arquivo .vsix
-```bash
-code --install-extension context-reminder-0.0.2.vsix
-```
+**Ou instale diretamente pelo VS Code:**
+1. Abra o VS Code
+2. Vá em Extensions (`Ctrl+Shift+X`)
+3. Pesquise por "Context Reminder"
+4. Clique em "Install"
+
+🔗 **[Ver no Marketplace](https://marketplace.visualstudio.com/items?itemName=robsonalvesdevbr.context-reminder)**
 
 ## ⚙️ Configuração
 
@@ -51,30 +54,9 @@ Acesse `File → Preferences → Settings` e procure por "Context Reminder":
 - **Documentos longos** - Use a extensão para quebrar documentos grandes em partes menores
 - **Desenvolvimento** - Monitore scripts e códigos antes de pedir análise à IA
 
-## 🛠️ Para Desenvolvedores
-
-### Desenvolvimento local
-```bash
-git clone https://github.com/robsonalvesdevbr/context-reminder.git
-cd context-reminder
-npm install
-npm run watch  # Compilação automática
-# Pressione F5 no VS Code para testar
-```
-
-### Construir extensão
-```bash
-npm run compile
-vsce package
-```
-
 ## 🤝 Contribuindo
 
-1. Fork do projeto
-2. Crie sua feature branch (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
+Interessado em contribuir? Veja nosso [Guia de Contribuição](CONTRIBUTING.md) para desenvolvedores.
 
 ## 📝 Licença
 
