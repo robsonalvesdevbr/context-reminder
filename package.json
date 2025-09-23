@@ -1,0 +1,52 @@
+{
+  "name": "context-reminder",
+  "displayName": "Context Reminder",
+  "description": "Reminds you when your prompt is getting too long (Claude or GPT).",
+  "version": "0.0.1",
+  "publisher": "your-name",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onDidChangeTextDocument"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Context Reminder Settings",
+      "properties": {
+        "contextReminder.model": {
+          "type": "string",
+          "enum": [
+            "claude",
+            "gpt"
+          ],
+          "default": "claude",
+          "description": "Modelo a ser usado para contagem de tokens."
+        },
+        "contextReminder.tokenLimit": {
+          "type": "number",
+          "default": 2000,
+          "description": "Número de tokens antes de mostrar o lembrete para criar um novo chat."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/vscode": "^1.80.0"
+  },
+  "dependencies": {
+    "gpt-tokenizer": "^1.0.3"
+  }
+}
