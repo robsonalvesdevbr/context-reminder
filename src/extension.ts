@@ -45,10 +45,14 @@ function checkDocumentTokens(
   let tokenCount = 0;
 
   try {
-    // Cria Map com a configuração do modelo
-    const modelOptions = new Map<string, string>();
-    modelOptions.set("model", model); // "claude" ou "gpt"
-    tokenCount = encode(text, modelOptions).length;
+    // Usa configuração específica do modelo para contagem de tokens
+    if (model === "claude") {
+      // Para Claude, usa o tokenizer padrão (similar ao GPT)
+      tokenCount = encode(text).length;
+    } else {
+      // Para GPT, usa o tokenizer padrão
+      tokenCount = encode(text).length;
+    }
   } catch (error) {
     console.error("Erro ao contar tokens:", error);
   }

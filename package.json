@@ -2,12 +2,40 @@
   "name": "context-reminder",
   "displayName": "Context Reminder",
   "description": "Reminds you when your prompt is getting too long (Claude or GPT).",
-  "version": "0.0.1",
-  "publisher": "your-name",
+  "version": "0.0.2",
+  "publisher": "robsonalvesdevbr",
+  "author": {
+    "name": "Robson Candido dos Santos Alves",
+    "email": "robson.curitibapr@gmail.com",
+    "url": "https://github.com/robsonalvesdevbr"
+  },
+  "homepage": "https://github.com/robsonalvesdevbr/context-reminder#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robsonalvesdevbr/context-reminder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/robsonalvesdevbr/context-reminder/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "claude",
+    "gpt",
+    "tokens",
+    "context",
+    "limit",
+    "reminder",
+    "prompt",
+    "assistant",
+    "chatgpt",
+    "openai"
+  ],
   "engines": {
     "vscode": "^1.80.0"
   },
   "categories": [
+    "AI",
     "Other"
   ],
   "activationEvents": [
@@ -47,6 +75,6 @@
     "@types/vscode": "^1.80.0"
   },
   "dependencies": {
-    "gpt-tokenizer": "^1.0.3"
+    "gpt-tokenizer": "^3.0.1"
   }
 }
