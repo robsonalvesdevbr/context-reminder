@@ -59,4 +59,121 @@ suite("Token Counter Unit Tests", () => {
       "Should match expected calculation"
     );
   });
+
+  test("Should handle different text lengths consistently", () => {
+    const texts = [
+      "Short",
+      "Medium length text with several words",
+      "Much longer text that spans multiple sentences and contains various punctuation marks, numbers like 123, and special characters like @#$%.",
+    ];
+
+    const tokenCounts = texts.map((text) => encode(text).length);
+
+    // Verificar que textos maiores têm mais tokens
+    assert.ok(
+      tokenCounts[0] < tokenCounts[1],
+      "Medium text should have more tokens than short"
+    );
+    assert.ok(
+      tokenCounts[1] < tokenCounts[2],
+      "Long text should have more tokens than medium"
+    );
+
+    // Todos devem ser positivos
+    tokenCounts.forEach((count, index) => {
+      assert.ok(count > 0, `Text ${index} should have positive token count`);
+    });
+  });
+
+  test("Should handle special characters and punctuation", () => {
+    const texts = [
+      "Hello world",
+      "Hello, world!",
+      "Hello... world???",
+      "Hello@world#test$123%",
+    ];
+
+    texts.forEach((text) => {
+      const tokenCount = encode(text).length;
+      assert.ok(
+        tokenCount > 0,
+        `Text "${text}" should have positive token count`
+      );
+    });
+  });
+
+  test("Should handle unicode and emoji characters", () => {
+    const unicodeTexts = [
+      "Hello 世界",
+      "مرحبا بالعالم",
+      "🌍 Hello World 🚀",
+      "Café naïve résumé",
+    ];
+
+    unicodeTexts.forEach((text) => {
+      assert.doesNotThrow(() => {
+        const tokenCount = encode(text).length;
+        assert.ok(
+          tokenCount > 0,
+          `Unicode text should have positive token count`
+        );
+      }, `Should handle unicode text: "${text}"`);
+    });
+  });
+
+  test("Claude percentage calculation should be accurate", () => {
+    const testCases = [
+      { gptTokens: 100, expectedClaude: 75 },
+      { gptTokens: 200, expectedClaude: 150 },
+      { gptTokens: 333, expectedClaude: 249 }, // Math.floor(333 * 0.75) = 249
+      { gptTokens: 1, expectedClaude: 0 }, // Math.floor(1 * 0.75) = 0
+    ];
+
+    testCases.forEach((testCase) => {
+      const claudeCount = Math.floor(testCase.gptTokens * 0.75);
+      assert.strictEqual(
+        claudeCount,
+        testCase.expectedClaude,
+        `Claude calculation for ${testCase.gptTokens} GPT tokens should be ${testCase.expectedClaude}`
+      );
+    });
+  });
+
+  test("Character-based fallback should be consistent", () => {
+    const testCases = [
+      { text: "Test", expectedTokens: 1 }, // 4 chars / 4 = 1
+      { text: "Hello", expectedTokens: 2 }, // 5 chars / 4 = 1.25 -> ceil = 2
+      { text: "Hello world!", expectedTokens: 3 }, // 12 chars / 4 = 3
+      { text: "a".repeat(16), expectedTokens: 4 }, // 16 chars / 4 = 4
+    ];
+
+    testCases.forEach((testCase) => {
+      const calculatedTokens = Math.ceil(testCase.text.length / 4);
+      assert.strictEqual(
+        calculatedTokens,
+        testCase.expectedTokens,
+        `Fallback calculation for "${testCase.text}" should be ${testCase.expectedTokens} tokens`
+      );
+    });
+  });
+
+  test("Should maintain consistent results for same input", () => {
+    const text = "Consistency test with multiple calls";
+    const results: number[] = [];
+
+    // Executar múltiplas vezes
+    for (let i = 0; i < 5; i++) {
+      results.push(encode(text).length);
+    }
+
+    // Todos os resultados devem ser iguais
+    const firstResult = results[0];
+    results.forEach((result, index) => {
+      assert.strictEqual(
+        result,
+        firstResult,
+        `Call ${index} should return same result as first call`
+      );
+    });
+  });
 });
