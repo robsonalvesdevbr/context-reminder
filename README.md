@@ -54,6 +54,16 @@ Acesse `File → Preferences → Settings` e procure por "Context Reminder":
 - **Documentos longos** - Use a extensão para quebrar documentos grandes em partes menores
 - **Desenvolvimento** - Monitore scripts e códigos antes de pedir análise à IA
 
+## 📋 Changelog
+
+Veja todas as mudanças e novas funcionalidades no [CHANGELOG.md](CHANGELOG.md).
+
+### Últimas atualizações (v0.0.4):
+- ✨ Novos comandos (`Check Token Count`, `Toggle Model`, `Set Token Limit`)
+- 🚀 Performance otimizada
+- 🛡️ Tratamento robusto de erros
+- 🧪 Suite completa de testes
+
 ## 🤝 Contribuindo
 
 Interessado em contribuir? Veja nosso [Guia de Contribuição](CONTRIBUTING.md) para desenvolvedores.

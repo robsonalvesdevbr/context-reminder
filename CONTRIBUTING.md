@@ -405,12 +405,157 @@ Mesmo com testes automatizados, sempre faça:
 3. **Teste em diferentes SOs** se possível
 4. **Verificação de performance** com arquivos reais
 
+## 📋 Changelog e Versionamento
+
+### Mantendo o Changelog
+
+Este projeto mantém um changelog detalhado em `CHANGELOG.md` seguindo o padrão [Keep a Changelog](https://keepachangelog.com/).
+
+#### Estrutura do Changelog
+
+```markdown
+## [Versão] - Data
+
+### Adicionado
+- ✨ Novas funcionalidades
+
+### Alterado
+- 🔄 Mudanças em funcionalidades existentes
+
+### Corrigido
+- 🐛 Correções de bugs
+
+### Removido
+- ❌ Funcionalidades removidas
+
+### Depreciado
+- ⚠️ Funcionalidades que serão removidas
+
+### Segurança
+- 🔒 Correções de segurança
+```
+
+#### Scripts para Changelog
+
+O projeto inclui scripts automatizados para manter o changelog:
+
+```bash
+# Adicionar nova funcionalidade
+npm run changelog:add 0.1.0 added "✨ Novo comando para exportar estatísticas"
+
+# Corrigir bug
+npm run changelog:add 0.0.5 fixed "🐛 Corrigido problema na contagem de emojis"
+
+# Melhorar performance
+npm run changelog:add 0.0.5 changed "🚀 Performance 50% mais rápida"
+
+# Remover funcionalidade
+npm run changelog:add 0.1.0 removed "❌ Removido suporte para VS Code < 1.80"
+
+# Adicionar correção de segurança
+npm run changelog:add 0.0.6 security "🔒 Corrigido vazamento de dados em logs"
+```
+
+#### Processo para Atualização Manual
+
+Se preferir editar manualmente:
+
+1. **Abra** `CHANGELOG.md`
+2. **Adicione nova versão** no topo (abaixo do título)
+3. **Use formato padrão**:
+   ```markdown
+   ## [0.1.0] - 2025-09-23
+
+   ### Adicionado
+   - ✨ Nova funcionalidade X
+   - ✨ Comando Y para Z
+
+   ### Corrigido
+   - 🐛 Bug na contagem de tokens
+   ```
+
+#### Tipos de Mudança
+
+| Tipo | Quando usar | Emoji |
+|------|-------------|--------|
+| `added` | Novas funcionalidades | ✨ |
+| `changed` | Mudanças em funcionalidades existentes | 🔄 |
+| `deprecated` | Funcionalidades que serão removidas | ⚠️ |
+| `removed` | Funcionalidades removidas | ❌ |
+| `fixed` | Correções de bugs | 🐛 |
+| `security` | Correções de segurança | 🔒 |
+
+#### Exemplo Prático
+
+```bash
+# Scenario: Você adicionou um novo comando e corrigiu um bug
+# Versão atual: 0.0.4 → Nova versão: 0.0.5
+
+# Passo 1: Adicionar funcionalidade
+npm run changelog:add 0.0.5 added "✨ Comando 'Export Statistics' no menu de contexto"
+
+# Passo 2: Adicionar correção
+npm run changelog:add 0.0.5 fixed "🐛 Corrigido crash com arquivos vazios"
+
+# Resultado em CHANGELOG.md:
+## [0.0.5] - 2025-09-23
+
+### Adicionado
+- ✨ Comando 'Export Statistics' no menu de contexto
+
+### Corrigido
+- 🐛 Corrigido crash com arquivos vazios
+```
+
+### Versionamento Semântico
+
+Seguimos [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PATCH`
+
+- **MAJOR** (1.0.0): Mudanças que quebram compatibilidade
+- **MINOR** (0.1.0): Novas funcionalidades compatíveis
+- **PATCH** (0.0.1): Correções de bugs compatíveis
+
+#### Guidelines de Versionamento
+
+```bash
+# Patch (0.0.4 → 0.0.5): Apenas correções
+npm run changelog:add 0.0.5 fixed "🐛 Corrigido problema X"
+
+# Minor (0.0.5 → 0.1.0): Nova funcionalidade
+npm run changelog:add 0.1.0 added "✨ Suporte para novos modelos de IA"
+
+# Major (0.1.0 → 1.0.0): Breaking change
+npm run changelog:add 1.0.0 changed "💥 BREAKING: Mudança na API de configuração"
+```
+
 ## 📦 Build e Release
 
 ### Gerando build local
 
 ```bash
 npm run compile
+```
+
+### Preparando Release
+
+#### Passo 1: Atualizar Changelog
+```bash
+# Adicionar mudanças da nova versão
+npm run changelog:add X.Y.Z added "✨ Sua nova funcionalidade"
+npm run changelog:add X.Y.Z fixed "🐛 Bug corrigido"
+```
+
+#### Passo 2: Atualizar package.json
+```bash
+# Atualizar versão manualmente em package.json
+# ou usar npm version
+npm version patch  # ou minor/major
+```
+
+#### Passo 3: Compilar e testar
+```bash
+npm run compile
+npm test
 ```
 
 ### Criando pacote para distribuição
@@ -420,6 +565,8 @@ npm run compile
 npm install -g vsce
 
 # Gerar pacote
+npm run package
+# ou
 vsce package
 ```
 
@@ -430,8 +577,32 @@ vsce package
 vsce login robsonalvesdevbr
 
 # Publicar nova versão
+npm run publish
+# ou
 vsce publish patch  # ou minor/major
 ```
+
+#### Checklist pré-publicação
+
+- [ ] ✅ Changelog atualizado com todas as mudanças
+- [ ] ✅ Versão atualizada no package.json
+- [ ] ✅ README.md atualizado se necessário
+- [ ] ✅ Todos os testes passando (`npm test`)
+- [ ] ✅ Build local funcionando (`npm run compile`)
+- [ ] ✅ Testado manualmente no VS Code
+- [ ] ✅ Pacote gerado sem erros (`npm run package`)
+
+#### Pós-publicação
+
+1. **Criar tag no Git**:
+   ```bash
+   git tag v0.0.5
+   git push origin v0.0.5
+   ```
+
+2. **Criar GitHub Release** com changelog da versão
+
+3. **Atualizar README** se necessário com novos recursos
 
 ## 🐛 Reportando Bugs
 
