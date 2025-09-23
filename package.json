@@ -45,6 +45,23 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "context-reminder.checkTokens",
+        "title": "Check Token Count",
+        "category": "Context Reminder"
+      },
+      {
+        "command": "context-reminder.toggleModel",
+        "title": "Toggle Model (Claude/GPT)",
+        "category": "Context Reminder"
+      },
+      {
+        "command": "context-reminder.setTokenLimit",
+        "title": "Set Token Limit",
+        "category": "Context Reminder"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "Context Reminder Settings",
@@ -71,7 +88,8 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "test:workspace": "npm run compile && node test-with-workspace.js"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

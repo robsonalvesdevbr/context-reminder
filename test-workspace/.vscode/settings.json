@@ -1,0 +1,4 @@
+{
+  "contextReminder.model": "claude",
+  "contextReminder.tokenLimit": 10
+}

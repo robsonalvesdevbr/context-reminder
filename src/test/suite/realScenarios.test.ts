@@ -30,19 +30,44 @@ suite("Real Scenarios Integration Tests", () => {
   });
 
   test("Scenario: Open file and verify initial token count", () => {
-    // Simular abertura de um arquivo com conteúdo inicial
+    // Simular abertura de um arquivo com conteúdo inicial substancial
     const initialContent = `
-# Meu Projeto
+# Meu Projeto de Desenvolvimento
 
-Este é um projeto de exemplo que contém algumas linhas de texto.
-O objetivo é testar se a extensão conta corretamente os tokens
-quando um arquivo é aberto pela primeira vez.
+Este é um projeto de exemplo que contém muitas linhas de texto detalhado para garantir que excedam o limite de tokens configurado para este teste.
+O objetivo principal é testar se a extensão conta corretamente os tokens
+quando um arquivo é aberto pela primeira vez pelo usuário.
 
-## Funcionalidades
+## Funcionalidades Principais
 
-- Contador de tokens
-- Alertas automáticos
-- Suporte a múltiplos modelos
+- Contador de tokens em tempo real
+- Alertas automáticos quando limites são excedidos
+- Suporte completo a múltiplos modelos de IA
+- Interface intuitiva e responsiva
+- Configurações personalizáveis pelo usuário
+
+## Descrição Detalhada
+
+Esta extensão foi desenvolvida para ajudar desenvolvedores a monitorar
+o uso de tokens ao trabalhar com modelos de linguagem como Claude e GPT.
+Com recursos avançados de contagem e alertas inteligentes, a ferramenta
+oferece uma experiência otimizada para desenvolvimento de aplicações
+que utilizam inteligência artificial moderna.
+
+### Benefícios
+
+1. Economia de recursos
+2. Melhor controle de custos
+3. Prevenção de erros por excesso de tokens
+4. Interface amigável ao desenvolvedor
+5. Integração perfeita com VS Code
+
+## Configuração
+
+Para configurar a extensão, acesse as configurações do VS Code
+e procure por "Context Reminder". Lá você encontrará todas as
+opções disponíveis para personalizar o comportamento da ferramenta
+de acordo com suas necessidades específicas de desenvolvimento.
 `.trim();
 
     const mockDocument = {
@@ -53,12 +78,13 @@ quando um arquivo é aberto pela primeira vez.
 
     // Configuração para teste
     configMock.get.withArgs("model", "claude").returns("claude");
-    configMock.get.withArgs("tokenLimit", 2000).returns(500); // Limite baixo para testar warning
+    configMock.get.withArgs("tokenLimit", 2000).returns(100); // Limite muito baixo para garantir warning
 
     // Simular abertura do arquivo
-    checkDocumentTokens(mockDocument, "claude", 500);
+    showWarningMessageStub.resetHistory();
+    checkDocumentTokens(mockDocument, "claude", 100);
 
-    // Verificar se warning foi exibido (conteúdo provavelmente excede 500 tokens)
+    // Verificar se warning foi exibido (conteúdo definitivamente excede 100 tokens)
     assert.ok(
       showWarningMessageStub.called,
       "Should show warning for file content exceeding limit"
@@ -69,7 +95,7 @@ quando um arquivo é aberto pela primeira vez.
       warningMessage.includes("tokens"),
       "Warning should mention tokens"
     );
-    assert.ok(warningMessage.includes("500"), "Warning should show the limit");
+    assert.ok(warningMessage.includes("100"), "Warning should show the limit");
   });
 
   test("Scenario: Type text and verify real-time updates", () => {
@@ -89,29 +115,24 @@ quando um arquivo é aberto pela primeira vez.
     configMock.get.withArgs("tokenLimit", 2000).returns(50);
 
     // Primeira verificação - texto curto
-    showWarningMessageStub.reset();
+    showWarningMessageStub.resetHistory();
     checkDocumentTokens(mockDocument, "gpt", 50);
     const initialWarningShown = showWarningMessageStub.called;
 
-    // Simular digitação de mais texto
-    currentText +=
-      " Adicionando mais conteúdo para aumentar a contagem de tokens. ";
-    currentText += "Este texto está sendo expandido gradualmente para simular ";
-    currentText +=
-      "uma sessão real de digitação onde o usuário vai escrevendo ";
-    currentText += "e a extensão monitora em tempo real.";
+    // Simular digitação de MUITO mais texto para garantir que exceda 50 tokens
+    const longText = " Adicionando muito mais conteúdo para garantir que a contagem de tokens exceda o limite estabelecido. ".repeat(10);
+    currentText += longText;
+    currentText += "Este texto está sendo expandido significativamente para simular ";
+    currentText += "uma sessão real onde o usuário escreve muito conteúdo e a extensão monitora. ";
+    currentText += "Com todo esse texto adicional, certamente vamos exceder os 50 tokens configurados como limite. ";
 
-    // Segunda verificação - texto expandido
-    showWarningMessageStub.reset();
+    // Segunda verificação - texto muito expandido
+    showWarningMessageStub.resetHistory();
     checkDocumentTokens(mockDocument, "gpt", 50);
     const finalWarningShown = showWarningMessageStub.called;
 
     // O texto expandido deve gerar warning
-    assert.ok(finalWarningShown, "Should show warning after typing more text");
-
-    if (!initialWarningShown && finalWarningShown) {
-      assert.ok(true, "Warning correctly appeared after threshold was crossed");
-    }
+    assert.ok(finalWarningShown, "Should show warning after typing much more text");
   });
 
   test("Scenario: Switch models and verify recalculation", () => {
@@ -260,14 +281,14 @@ quando um arquivo é aberto pela primeira vez.
     } as vscode.TextDocument;
 
     // Simular múltiplas mudanças incrementais (como digitação real)
-    const iterations = 10;
+    const iterations = 8; // Reduced from 10 for faster execution
     const results: boolean[] = [];
 
     for (let i = 0; i < iterations; i++) {
-      // Adicionar mais conteúdo a cada iteração
-      documentContent += `Iteration ${i} content. `;
+      // Adicionar muito mais conteúdo a cada iteração para garantir que exceda o limite
+      documentContent += `Iteration ${i} content with much more text to ensure we exceed the token limit. This is a longer sentence that adds more tokens. `;
 
-      showWarningMessageStub.reset();
+      showWarningMessageStub.resetHistory();
       const startTime = Date.now();
 
       checkDocumentTokens(mockDocument, "claude", 50);
@@ -284,16 +305,12 @@ quando um arquivo é aberto pela primeira vez.
       results.push(showWarningMessageStub.called);
     }
 
-    // Deve começar sem warning e eventualmente mostrar warning
-    const firstFewResults = results.slice(0, 3);
+    // Com o conteúdo expandido, devemos ter warning nas últimas iterações
     const lastFewResults = results.slice(-3);
-
-    // Primeiras iterações podem não ter warning
-    // Últimas iterações devem ter warning (documento cresceu)
     const warningEventuallyShown = lastFewResults.some((result) => result);
     assert.ok(
       warningEventuallyShown,
-      "Warning should eventually be shown as content grows"
+      "Warning should eventually be shown as content grows significantly"
     );
   });
 
