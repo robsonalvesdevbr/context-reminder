@@ -18,6 +18,7 @@
     "url": "https://github.com/robsonalvesdevbr/context-reminder/issues"
   },
   "license": "MIT",
+  "icon": "images/icon.png",
   "keywords": [
     "ai",
     "claude",
