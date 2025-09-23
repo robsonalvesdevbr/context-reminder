@@ -70,7 +70,16 @@ Interessado em contribuir? Veja nosso [Guia de Contribuição](CONTRIBUTING.md) 
 
 ## 📝 Licença
 
-MIT License - veja [LICENSE](LICENSE) para detalhes.
+Este projeto está licenciado sob a **MIT License** - uma licença permissiva que permite uso comercial e modificações.
+
+**Resumo da licença MIT:**
+- ✅ **Uso comercial** permitido
+- ✅ **Modificação** permitida
+- ✅ **Distribuição** permitida
+- ✅ **Uso privado** permitido
+- ❗ **Sem garantias** - software fornecido "como está"
+
+Veja o arquivo [LICENSE](LICENSE) para detalhes completos.
 
 ## 👨‍💻 Autor
 

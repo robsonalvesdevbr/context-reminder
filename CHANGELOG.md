@@ -9,9 +9,13 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Adicionado
 - ✨ Documentação completa de changelog no CONTRIBUTING.md
+- 📝 Arquivo LICENSE (MIT) adicionado ao projeto
 
 ### Corrigido
 - 🐛 Corrigido comportamento do script de changelog
+
+### Alterado
+- 📝 Seção de licença expandida no README.md com detalhes da MIT License
 
 ## [0.0.4] - 2025-09-23
 

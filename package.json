@@ -94,6 +94,7 @@
     "changelog:add": "node scripts/update-changelog.js",
     "changelog:feature": "node scripts/update-changelog.js",
     "changelog:fix": "node scripts/update-changelog.js",
+    "check:license": "node scripts/check-license.js",
     "package": "vsce package",
     "publish": "vsce publish"
   },
