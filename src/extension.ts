@@ -36,7 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
   }
 }
 
-function checkDocumentTokens(
+export function checkDocumentTokens(
   document: vscode.TextDocument,
   model: string,
   tokenLimit: number

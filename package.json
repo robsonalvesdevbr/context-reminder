@@ -69,11 +69,23 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "vscode-test"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
-    "@types/vscode": "^1.80.0"
+    "@types/vscode": "^1.80.0",
+    "@types/node": "18.x",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.4.1",
+    "mocha": "^10.7.3",
+    "@types/mocha": "^10.0.7",
+    "sinon": "^19.0.2",
+    "@types/sinon": "^17.0.3",
+    "chai": "^5.1.1",
+    "@types/chai": "^4.3.19",
+    "nyc": "^17.0.0"
   },
   "dependencies": {
     "gpt-tokenizer": "^3.0.1"
