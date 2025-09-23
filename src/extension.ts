@@ -45,16 +45,21 @@ function checkDocumentTokens(
   let tokenCount = 0;
 
   try {
-    // Usa configuração específica do modelo para contagem de tokens
+    // Contagem de tokens baseada no modelo selecionado
+    const gptTokenCount = encode(text).length;
+
     if (model === "claude") {
-      // Para Claude, usa o tokenizer padrão (similar ao GPT)
-      tokenCount = encode(text).length;
+      // Claude geralmente usa ~25% menos tokens que GPT para o mesmo texto
+      // Esta é uma aproximação baseada no tokenizer GPT
+      tokenCount = Math.floor(gptTokenCount * 0.75);
     } else {
-      // Para GPT, usa o tokenizer padrão
-      tokenCount = encode(text).length;
+      // GPT usa contagem direta do tokenizer
+      tokenCount = gptTokenCount;
     }
   } catch (error) {
     console.error("Erro ao contar tokens:", error);
+    // Fallback: estima baseado em caracteres (1 token ≈ 4 caracteres)
+    tokenCount = Math.ceil(text.length / 4);
   }
 
   if (tokenCount > tokenLimit) {
