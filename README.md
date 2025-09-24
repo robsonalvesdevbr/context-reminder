@@ -1,93 +1,171 @@
-# Context Reminder
+<div align="center">
+  <img src="images/icon.png" width="120" height="120" alt="Context Reminder Logo" style="border-radius: 20px;">
+  <h1>Context Reminder</h1>
+  <p><strong>Never lose context in your AI conversations again!</strong></p>
+  <p>A VS Code extension that monitors your prompt size and warns you when approaching Claude or GPT context limits.</p>
 
-⚠️ **Nunca mais perca o contexto da sua conversa com IA!**
+  <p>
+    <a href="https://marketplace.visualstudio.com/items?itemName=robsonalvesdevbr.context-reminder">
+      <img src="https://img.shields.io/visual-studio-marketplace/v/robsonalvesdevbr.context-reminder?color=blue&amp;label=VS%20Code%20Marketplace" alt="VS Code Marketplace">
+    </a>
+    <a href="https://github.com/robsonalvesdevbr/context-reminder/blob/main/LICENSE">
+      <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License">
+    </a>
+    <a href="https://github.com/robsonalvesdevbr/context-reminder">
+      <img src="https://img.shields.io/github/stars/robsonalvesdevbr/context-reminder?style=social" alt="GitHub Stars">
+    </a>
+  </p>
+</div>
 
-Uma extensão para VS Code que monitora o tamanho do seu prompt e te avisa quando está próximo dos limites de contexto do Claude ou GPT.
+## ✨ Features
 
-## ✨ Funcionalidades
+<table>
+<tr>
+<td>🚨</td>
+<td><strong>Smart Alerts</strong><br/>Automatic warnings when tokens exceed limits</td>
+</tr>
+<tr>
+<td>🤖</td>
+<td><strong>Multi-Model Support</strong><br/>Support for Claude and GPT with specific token counting</td>
+</tr>
+<tr>
+<td>⚙️</td>
+<td><strong>Configurable</strong><br/>Adjust limits and models in VS Code Settings</td>
+</tr>
+<tr>
+<td>🔄</td>
+<td><strong>Real-Time</strong><br/>Continuous monitoring while you type</td>
+</tr>
+<tr>
+<td>🎯</td>
+<td><strong>Non-Intrusive</strong><br/>Works silently until you need to be warned</td>
+</tr>
+</table>
 
-- 🚨 **Alertas inteligentes** - Aviso automático quando tokens excedem o limite
-- 🤖 **Multi-modelo** - Suporte para Claude e GPT com contagem específica
-- ⚙️ **Configurável** - Ajuste limites e modelos nas Settings
-- 🔄 **Tempo real** - Monitoramento contínuo enquanto você digita
-- 🎯 **Não intrusivo** - Funciona silenciosamente até precisar avisar
+## 🚀 Installation
 
-## 🚀 Instalação
-
-### Via VS Code Marketplace
+### Method 1: VS Code Marketplace
 ```bash
 ext install robsonalvesdevbr.context-reminder
 ```
 
-**Ou instale diretamente pelo VS Code:**
-1. Abra o VS Code
-2. Vá em Extensions (`Ctrl+Shift+X`)
-3. Pesquise por "Context Reminder"
-4. Clique em "Install"
+### Method 2: VS Code Interface
+1. Open VS Code
+2. Go to Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+3. Search for "Context Reminder"
+4. Click **Install**
 
-🔗 **[Ver no Marketplace](https://marketplace.visualstudio.com/items?itemName=robsonalvesdevbr.context-reminder)**
+<div align="center">
+  <a href="https://marketplace.visualstudio.com/items?itemName=robsonalvesdevbr.context-reminder">
+    <img src="https://img.shields.io/badge/Install%20from-VS%20Code%20Marketplace-blue?style=for-the-badge&logo=visual-studio-code" alt="Install from VS Code Marketplace">
+  </a>
+</div>
 
-## ⚙️ Configuração
+## ⚙️ Configuration
 
-Acesse `File → Preferences → Settings` e procure por "Context Reminder":
+Access `File → Preferences → Settings` and search for "Context Reminder":
 
-- **Modelo**: Escolha entre "claude" ou "gpt" (padrão: claude)
-- **Limite de tokens**: Defina quando mostrar o alerta (padrão: 2000)
+| Setting | Description | Default | Options |
+|---------|-------------|---------|----------|
+| **Model** | AI model for token counting | `claude` | `claude`, `gpt` |
+| **Token Limit** | Threshold for showing alerts | `2000` | Any positive number |
 
-## 📖 Como usar
+## 📖 How to Use
 
-1. **Instalação automática** - A extensão ativa sozinha quando o VS Code inicia
-2. **Digite normalmente** - Continue trabalhando em seus arquivos
-3. **Receba alertas** - Quando passar do limite, verá: "⚠️ Seu prompt possui X tokens (limite: Y). Considere iniciar um novo chat!"
-4. **Ajuste conforme necessário** - Mude as configurações nas Settings
+1. **Automatic Activation** - Extension activates automatically when VS Code starts
+2. **Work Normally** - Continue working on your files as usual
+3. **Receive Alerts** - When exceeding the limit, you'll see: "⚠️ Your prompt has X tokens (limit: Y). Consider starting a new chat!"
+4. **Adjust as Needed** - Change settings in VS Code Settings
 
-## 🎯 Casos de uso
+## 🎯 Use Cases
 
-- **Prompts para Claude/GPT** - Evite perder contexto em conversas longas
-- **Documentação técnica** - Monitore tamanho antes de enviar para IA
-- **Code reviews** - Saiba se o código cabe no contexto do modelo
-- **Análise de logs** - Verifique se logs são pequenos o suficiente
+<div>
+<details>
+<summary><strong>🤖 AI Prompts</strong></summary>
+<p>Prevent context loss in long conversations with Claude/GPT</p>
+</details>
 
-## 💡 Dicas
+<details>
+<summary><strong>📚 Technical Documentation</strong></summary>
+<p>Monitor size before sending to AI for analysis</p>
+</details>
 
-- **Modelos diferentes** - Claude e GPT têm limites de contexto diferentes, ajuste conforme sua necessidade
-- **Documentos longos** - Use a extensão para quebrar documentos grandes em partes menores
-- **Desenvolvimento** - Monitore scripts e códigos antes de pedir análise à IA
+<details>
+<summary><strong>🔍 Code Reviews</strong></summary>
+<p>Know if code fits within the model's context window</p>
+</details>
+
+<details>
+<summary><strong>📊 Log Analysis</strong></summary>
+<p>Verify logs are small enough for AI processing</p>
+</details>
+</div>
+
+## 💡 Tips
+
+> **💡 Pro Tip:** Different models have different context limits - adjust accordingly!
+
+- **Different Models** - Claude and GPT have different context limits, adjust to your needs
+- **Long Documents** - Use the extension to break large documents into smaller parts
+- **Development** - Monitor scripts and code before requesting AI analysis
 
 ## 📋 Changelog
 
-Veja todas as mudanças e novas funcionalidades no [CHANGELOG.md](CHANGELOG.md).
+See all changes and new features in [CHANGELOG.md](CHANGELOG.md).
 
-### Últimas atualizações:
-- ✨ Novos comandos (`Check Token Count`, `Toggle Model`, `Set Token Limit`)
-- 🚀 Performance otimizada
-- 🛡️ Tratamento robusto de erros
-- 🧪 Suite completa de testes
-- 🎨 Ícone com fundo transparente
+### Recent Updates
+```
+✨ New commands (Check Token Count, Toggle Model, Set Token Limit)
+🚀 Optimized performance
+🛡️ Robust error handling
+🧪 Complete test suite
+🎨 Icon with transparent background
+```
 
-## 🤝 Contribuindo
+## 🤝 Contributing
 
-Interessado em contribuir? Veja nosso [Guia de Contribuição](CONTRIBUTING.md) para desenvolvedores.
+Interested in contributing? Check our [Contributing Guide](CONTRIBUTING.md) for developers.
 
-## 📝 Licença
+<div align="center">
+  <a href="CONTRIBUTING.md">
+    <img src="https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge" alt="Contributions Welcome">
+  </a>
+</div>
 
-Este projeto está licenciado sob a **MIT License** - uma licença permissiva que permite uso comercial e modificações.
+## 📝 License
 
-**Resumo da licença MIT:**
-- ✅ **Uso comercial** permitido
-- ✅ **Modificação** permitida
-- ✅ **Distribuição** permitida
-- ✅ **Uso privado** permitido
-- ❗ **Sem garantias** - software fornecido "como está"
+This project is licensed under the **MIT License** - a permissive license that allows commercial use and modifications.
 
-Veja o arquivo [LICENSE](LICENSE) para detalhes completos.
+**MIT License Summary:**
+- ✅ **Commercial use** allowed
+- ✅ **Modification** allowed
+- ✅ **Distribution** allowed
+- ✅ **Private use** allowed
+- ❗ **No warranties** - software provided "as is"
 
-## 👨‍💻 Autor
+See the [LICENSE](LICENSE) file for complete details.
 
-**Robson Candido dos Santos Alves**
-- GitHub: [@robsonalvesdevbr](https://github.com/robsonalvesdevbr)
-- Email: robson.curitibapr@gmail.com
+## 👨‍💻 Author
+
+<div align="center">
+  <img src="https://github.com/robsonalvesdevbr.png" width="80" height="80" style="border-radius: 50%;" alt="Robson Alves">
+  <h3>Robson Candido dos Santos Alves</h3>
+  <p>
+    <a href="https://github.com/robsonalvesdevbr">
+      <img src="https://img.shields.io/badge/GitHub-robsonalvesdevbr-blue?style=flat&logo=github" alt="GitHub">
+    </a>
+    <a href="mailto:robson.curitibapr@gmail.com">
+      <img src="https://img.shields.io/badge/Email-robson.curitibapr@gmail.com-red?style=flat&logo=gmail" alt="Email">
+    </a>
+  </p>
+</div>
 
 ---
 
-⭐ **Gostou da extensão?** Deixe uma estrela no repositório!
+<div align="center">
+  <h3>⭐ Enjoyed the extension?</h3>
+  <p>Star the repository and share with others!</p>
+  <a href="https://github.com/robsonalvesdevbr/context-reminder">
+    <img src="https://img.shields.io/github/stars/robsonalvesdevbr/context-reminder?style=for-the-badge&logo=github" alt="GitHub Stars">
+  </a>
+</div>
