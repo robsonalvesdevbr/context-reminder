@@ -5,6 +5,17 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.7] - 2025-09-23
+
+### Melhorado
+- 📝 Documentação CONTRIBUTING.md reorganizada e simplificada (reduzida de 676 para 349 linhas)
+- 🗂️ Adicionado índice de navegação no guia de contribuição
+- 📖 Estrutura mais clara e concisa para desenvolvedores
+- ✨ Atualizada seção de "Últimas atualizações" no README.md
+
+### Alterado
+- 🔄 Removida referência específica de versão do README.md para manter informações sempre atuais
+
 ## [0.0.6] - 2025-09-24
 
 ### Adicionado

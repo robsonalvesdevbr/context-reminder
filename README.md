@@ -58,11 +58,12 @@ Acesse `File → Preferences → Settings` e procure por "Context Reminder":
 
 Veja todas as mudanças e novas funcionalidades no [CHANGELOG.md](CHANGELOG.md).
 
-### Últimas atualizações (v0.0.4):
+### Últimas atualizações:
 - ✨ Novos comandos (`Check Token Count`, `Toggle Model`, `Set Token Limit`)
 - 🚀 Performance otimizada
 - 🛡️ Tratamento robusto de erros
 - 🧪 Suite completa de testes
+- 🎨 Ícone com fundo transparente
 
 ## 🤝 Contribuindo
 
