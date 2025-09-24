@@ -5,6 +5,17 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.8] - 2025-09-24
+
+### Adicionado
+- 🚀 GitHub Actions workflow para deploy automático
+- 📦 Pipeline CI/CD completo com testes e publicação automática
+
+### Melhorado
+- ⬆️ Dependências atualizadas para versões mais recentes
+- 🧪 Execução de testes no pipeline de deploy
+- 🔧 Configuração otimizada do workflow com cache npm
+
 ## [0.0.7] - 2025-09-23
 
 ### Melhorado
