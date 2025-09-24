@@ -5,6 +5,16 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.11] - 2025-09-24
+
+### Melhorado
+- 📄 README.md reformatado com design profissional e layout moderno
+- 🎨 Cabeçalho centralizado com ícone e badges estilizados
+- 🌐 Tradução completa para inglês para alcance internacional
+- 📊 Tabelas estruturadas para features e configurações
+- 🔗 Links e badges do Marketplace e GitHub aprimorados
+- 📱 Layout responsivo com elementos visuais melhorados
+
 ## [0.0.10] - 2025-09-24
 
 ### Melhorado
