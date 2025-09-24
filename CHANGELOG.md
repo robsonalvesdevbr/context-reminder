@@ -15,6 +15,22 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - 🔗 Links e badges do Marketplace e GitHub aprimorados
 - 📱 Layout responsivo com elementos visuais melhorados
 
+### Atualizado
+- ⬆️ **Dependências atualizadas para versões mais recentes**:
+  - `typescript`: 5.6.0 → 5.9.2 (versão mais recente estável)
+  - `@vscode/test-electron`: 2.4.5 → 2.5.2 (melhorias na execução de testes)
+  - `@types/sinon`: 17.0.3 → 17.0.4 (tipos atualizados)
+  - `@types/node`: 20.x → 22.15.1 (compatibilidade com Node.js v22 do VS Code 2025)
+  - `@types/chai`: 4.3.20 → 5.2.2 (major update com novas funcionalidades)
+  - `chai`: 5.3.3 → 6.0.1 (major update com melhorias de performance)
+  - `mocha`: 10.8.2 → 11.7.2 (major update com novos recursos)
+  - `sinon`: 19.0.5 → 21.0.0 (major update com correções e melhorias)
+
+### Testado
+- 🧪 Suite completa de 64 testes executada com sucesso após atualizações
+- ✅ Compatibilidade verificada com todas as novas versões de dependências
+- 🔧 Funcionalidade core mantida íntegra após major updates
+
 ## [0.0.10] - 2025-09-24
 
 ### Melhorado
