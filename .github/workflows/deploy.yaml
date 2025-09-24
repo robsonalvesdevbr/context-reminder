@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write  # Para criar releases
+      contents: write # Para criar releases
 
     steps:
       - name: Checkout code
@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -40,11 +40,48 @@ jobs:
       - name: Package VSCode extension
         run: vsce package
 
+      - name: Extract changelog for current version
+        id: changelog
+        run: |
+          # Extrair a versão da tag (remover 'v' do início)
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+          # Extrair o changelog da versão atual
+          awk -v version="$VERSION" '
+            /^## \[/ { 
+              if ($0 ~ "\\[" version "\\]") {
+                found=1; next
+              } else if (found) {
+                exit
+              }
+            }
+            found && /^## \[/ { exit }
+            found { print }
+          ' CHANGELOG.md > current_changelog.md
+
+          # Criar release notes combinadas
+          echo "## 📝 Changelog" > release_notes.md
+          echo "" >> release_notes.md
+          if [ -s current_changelog.md ]; then
+            cat current_changelog.md >> release_notes.md
+          else
+            echo "Veja o [CHANGELOG.md](https://github.com/robsonalvesdevbr/context-reminder/blob/main/CHANGELOG.md) para detalhes das alterações." >> release_notes.md
+          fi
+          echo "" >> release_notes.md
+          echo "---" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "## 🤖 Notas Automáticas do GitHub" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "_As notas abaixo foram geradas automaticamente pelo GitHub baseadas nos commits e PRs._" >> release_notes.md
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: "*.vsix"
+          body_path: release_notes.md
           generate_release_notes: true
+          append_body: true
           draft: false
           prerelease: false
 

@@ -5,6 +5,14 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.10] - 2025-09-24
+
+### Melhorado
+- 🚀 Workflow GitHub Actions otimizado com extração automática de changelog
+- 📝 Release notes estruturadas combinando changelog manual e notas automáticas
+- 🧪 Testes configurados para ambiente headless com xvfb-run
+- 🔧 Padronização de configuração do workflow
+
 ## [0.0.9] - 2025-09-24
 
 ### Corrigido
