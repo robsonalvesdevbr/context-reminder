@@ -32,10 +32,14 @@ cd context-reminder
 # Instalação das dependências
 npm install
 
-# Compilação para desenvolvimento
-npm run compile
+# Build com esbuild para desenvolvimento (recomendado)
+npm run esbuild
 
-# Modo watch (recomendado para desenvolvimento)
+# Modo watch com esbuild (recomendado para desenvolvimento)
+npm run esbuild-watch
+
+# Alternativa: Compilação TypeScript tradicional
+npm run compile
 npm run watch
 ```
 
@@ -184,12 +188,31 @@ try {
 ### Compilação local
 
 ```bash
-# Compilação única
-npm run compile
+# Build com esbuild (recomendado)
+npm run esbuild
 
-# Preparar para publicação
+# Build para produção (minificado)
 npm run vscode:prepublish
+
+# Alternativa: Compilação TypeScript tradicional
+npm run compile
 ```
+
+### Sistema de Build (esbuild)
+
+A partir da versão 0.1.0, utilizamos **esbuild** para bundling:
+
+**Vantagens:**
+- ✅ **Bundling completo** - Todas dependências incluídas no arquivo final
+- ✅ **Performance** - Build mais rápido que TypeScript
+- ✅ **Minificação** - Código otimizado para produção
+- ✅ **Resolução de dependências** - Sem erros de "module not found"
+
+**Scripts disponíveis:**
+- `npm run esbuild` - Build com sourcemap (desenvolvimento)
+- `npm run esbuild-watch` - Build em modo watch
+- `npm run esbuild-base` - Build base (sem sourcemap)
+- `npm run vscode:prepublish` - Build minificado (produção)
 
 ### Preparando Release
 
@@ -209,7 +232,10 @@ npm version patch  # ou minor/major
 
 #### 3. Compilar e testar
 ```bash
-npm run compile
+# Build com esbuild (recomendado)
+npm run esbuild
+
+# Executar testes
 npm test
 ```
 
@@ -239,9 +265,11 @@ npm run publish
 - [ ] ✅ Versão atualizada no package.json
 - [ ] ✅ README.md atualizado se necessário
 - [ ] ✅ Todos os testes passando (`npm test`)
-- [ ] ✅ Build local funcionando (`npm run compile`)
+- [ ] ✅ Build local funcionando (`npm run esbuild`)
+- [ ] ✅ Build de produção funcionando (`npm run vscode:prepublish`)
 - [ ] ✅ Testado manualmente no VS Code
 - [ ] ✅ Pacote gerado sem erros (`npm run package`)
+- [ ] ✅ Verificar se bundle inclui todas dependências (arquivo ~3MB)
 
 ## 📋 Changelog e Versionamento
 

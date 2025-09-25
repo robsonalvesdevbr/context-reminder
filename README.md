@@ -113,13 +113,15 @@ Access `File → Preferences → Settings` and search for "Context Reminder":
 
 See all changes and new features in [CHANGELOG.md](CHANGELOG.md).
 
-### Recent Updates
+### Recent Updates - v0.1.0
 ```
-✨ New commands (Check Token Count, Toggle Model, Set Token Limit)
-🚀 Optimized performance
-🛡️ Robust error handling
-🧪 Complete test suite
-🎨 Icon with transparent background
+🐛 CRITICAL FIX: Commands now work via Command Palette
+✨ esbuild bundling system - all dependencies included
+🚀 Extension fully functional - no more "Cannot find module" errors
+⚡ Optimized build process with minification
+🔧 Debug logging for better troubleshooting
+📦 Package size increased to 3.19MB (includes all dependencies)
+🎯 activationEvents fixed for manual command execution
 ```
 
 ## 🤝 Contributing

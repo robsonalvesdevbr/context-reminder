@@ -5,6 +5,35 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.0] - 2025-09-25
+
+### Adicionado
+- ✨ **Sistema de bundling com esbuild** - Implementação completa para resolver dependências
+- 🔧 **Logs de debug detalhados** - Rastreamento completo da ativação da extensão
+- 🎯 **activationEvents para comandos** - Ativação automática quando comandos são executados
+
+### Corrigido
+- 🐛 **Erro crítico "Cannot find module 'gpt-tokenizer'"** - Dependência agora bundled corretamente
+- 🔧 **Comandos não funcionavam via Command Palette** - Problema de ativação da extensão resolvido
+- 📦 **Dependências externas não incluídas no package** - Sistema de bundling resolve completamente
+
+### Melhorado
+- 🚀 **Sistema de build completamente reformulado** - Migração do TypeScript puro para esbuild
+- 📊 **Package agora inclui todas dependências** - Size: 898KB → 3.19MB (funcional)
+- ⚡ **Performance da extensão otimizada** - Bundle minificado para produção
+- 🎛️ **Scripts de desenvolvimento atualizados** - esbuild-watch para desenvolvimento em tempo real
+
+### Alterado
+- 🔄 **Scripts do package.json** - `vscode:prepublish` agora usa esbuild com minificação
+- 🛠️ **Processo de desenvolvimento** - `npm run esbuild-watch` para desenvolvimento
+- 📦 **Estrutura de build** - Bundle único em vez de múltiplos arquivos compilados
+
+### Técnico
+- 🏗️ **esbuild configuration** - Bundle, minificação, CommonJS, Node platform
+- 🧪 **Todos comandos agora funcionais** - checkTokens, toggleModel, setTokenLimit
+- 🔍 **Try-catch melhorado** - Captura erros durante ativação da extensão
+- 📈 **Bundle analysis** - gpt-tokenizer confirmadamente incluído (18 ocorrências)
+
 ## [0.0.11] - 2025-09-24
 
 ### Melhorado

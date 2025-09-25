@@ -2,15 +2,21 @@ import * as vscode from "vscode";
 import { encode } from "gpt-tokenizer";
 
 export function activate(context: vscode.ExtensionContext) {
-  // Lê configuração inicial
-  let config = vscode.workspace.getConfiguration("contextReminder");
-  let model = config.get<string>("model", "claude");
-  let tokenLimit = config.get<number>("tokenLimit", 2000);
+  console.log('Context Reminder extension is activating...');
 
-  // Registra os comandos
-  const checkTokensCommand = vscode.commands.registerCommand(
-    "context-reminder.checkTokens",
-    () => {
+  try {
+    // Lê configuração inicial
+    let config = vscode.workspace.getConfiguration("contextReminder");
+    let model = config.get<string>("model", "claude");
+    let tokenLimit = config.get<number>("tokenLimit", 2000);
+
+    console.log(`Initial config - Model: ${model}, Token Limit: ${tokenLimit}`);
+
+    // Registra os comandos
+    console.log('Registering checkTokens command...');
+    const checkTokensCommand = vscode.commands.registerCommand(
+      "context-reminder.checkTokens",
+      () => {
       if (vscode.window.activeTextEditor) {
         checkDocumentTokens(
           vscode.window.activeTextEditor.document,
@@ -23,7 +29,9 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   context.subscriptions.push(checkTokensCommand);
+  console.log('checkTokens command registered successfully');
 
+  console.log('Registering toggleModel command...');
   const toggleModelCommand = vscode.commands.registerCommand(
     "context-reminder.toggleModel",
     async () => {
@@ -34,7 +42,9 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   context.subscriptions.push(toggleModelCommand);
+  console.log('toggleModel command registered successfully');
 
+  console.log('Registering setTokenLimit command...');
   const setTokenLimitCommand = vscode.commands.registerCommand(
     "context-reminder.setTokenLimit",
     async () => {
@@ -59,6 +69,9 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   context.subscriptions.push(setTokenLimitCommand);
+  console.log('setTokenLimit command registered successfully');
+
+  console.log('All commands registered. Extension activation complete.');
 
   // Atualiza configuração se alterada nas Settings
   vscode.workspace.onDidChangeConfiguration((e) => {
@@ -86,6 +99,11 @@ export function activate(context: vscode.ExtensionContext) {
       model,
       tokenLimit
     );
+  }
+
+  } catch (error) {
+    console.error('Error during extension activation:', error);
+    vscode.window.showErrorMessage(`Context Reminder activation failed: ${error}`);
   }
 }
 

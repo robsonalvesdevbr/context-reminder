@@ -32,13 +32,13 @@ jobs:
         run: xvfb-run -a npm test
 
       - name: Build extension
-        run: npm run compile
+        run: npm run vscode:prepublish
 
       - name: Install vsce globally
         run: npm install -g @vscode/vsce
 
       - name: Package VSCode extension
-        run: vsce package
+        run: npm run package
 
       - name: Extract changelog for current version
         id: changelog

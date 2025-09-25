@@ -2,12 +2,13 @@
   "name": "context-reminder",
   "displayName": "Context Reminder",
   "description": "Reminds you when your prompt is getting too long (Claude or GPT).",
-  "version": "0.0.11",
+  "version": "0.1.0",
   "publisher": "robsonalvesdevbr",
+  "pricing": "Free",
   "author": {
     "name": "Robson Candido dos Santos Alves",
-    "email": "robson.curitibapr@gmail.com",
-    "url": "https://github.com/robsonalvesdevbr"
+    "email": "robson.curitibapr+marketplace@gmail.com",
+    "url": "https://www.robsonalves.dev.br"
   },
   "homepage": "https://github.com/robsonalvesdevbr/context-reminder#readme",
   "repository": {
@@ -42,7 +43,10 @@
   ],
   "activationEvents": [
     "onStartupFinished",
-    "onDidChangeTextDocument"
+    "onDidChangeTextDocument",
+    "onCommand:context-reminder.checkTokens",
+    "onCommand:context-reminder.toggleModel",
+    "onCommand:context-reminder.setTokenLimit"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -85,12 +89,15 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile",
+    "pretest": "npm run esbuild",
     "test": "vscode-test",
-    "test:workspace": "npm run compile && node test-with-workspace.js",
+    "test:workspace": "npm run esbuild && node test-with-workspace.js",
     "changelog:add": "node scripts/update-changelog.js",
     "changelog:feature": "node scripts/update-changelog.js",
     "changelog:fix": "node scripts/update-changelog.js",
@@ -99,18 +106,19 @@
     "publish": "vsce publish"
   },
   "devDependencies": {
-    "typescript": "^5.9.2",
-    "@types/vscode": "^1.104.0",
+    "@types/chai": "^5.2.2",
+    "@types/mocha": "^10.0.10",
     "@types/node": "^22.15.1",
+    "@types/sinon": "^17.0.4",
+    "@types/vscode": "^1.104.0",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2",
-    "mocha": "^11.7.2",
-    "@types/mocha": "^10.0.10",
-    "sinon": "^21.0.0",
-    "@types/sinon": "^17.0.4",
     "chai": "^6.0.1",
-    "@types/chai": "^5.2.2",
-    "nyc": "^17.0.0"
+    "esbuild": "^0.25.10",
+    "mocha": "^11.7.2",
+    "nyc": "^17.0.0",
+    "sinon": "^21.0.0",
+    "typescript": "^5.9.2"
   },
   "dependencies": {
     "gpt-tokenizer": "^3.0.1"
