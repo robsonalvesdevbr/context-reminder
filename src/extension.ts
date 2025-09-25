@@ -10,10 +10,8 @@ export function activate(context: vscode.ExtensionContext) {
     let model = config.get<string>("model", "claude");
     let tokenLimit = config.get<number>("tokenLimit", 2000);
 
-    console.log(`Initial config - Model: ${model}, Token Limit: ${tokenLimit}`);
 
     // Registra os comandos
-    console.log('Registering checkTokens command...');
     const checkTokensCommand = vscode.commands.registerCommand(
       "context-reminder.checkTokens",
       () => {
@@ -29,9 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   context.subscriptions.push(checkTokensCommand);
-  console.log('checkTokens command registered successfully');
 
-  console.log('Registering toggleModel command...');
   const toggleModelCommand = vscode.commands.registerCommand(
     "context-reminder.toggleModel",
     async () => {
@@ -42,9 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   context.subscriptions.push(toggleModelCommand);
-  console.log('toggleModel command registered successfully');
 
-  console.log('Registering setTokenLimit command...');
   const setTokenLimitCommand = vscode.commands.registerCommand(
     "context-reminder.setTokenLimit",
     async () => {
@@ -69,9 +63,8 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   context.subscriptions.push(setTokenLimitCommand);
-  console.log('setTokenLimit command registered successfully');
 
-  console.log('All commands registered. Extension activation complete.');
+  console.log('Context Reminder: All commands registered. Extension activation complete.');
 
   // Atualiza configuração se alterada nas Settings
   vscode.workspace.onDidChangeConfiguration((e) => {
